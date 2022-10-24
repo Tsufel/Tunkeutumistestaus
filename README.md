@@ -17,7 +17,7 @@ https://user-images.githubusercontent.com/71498717/197486477-1e84835c-3136-4044-
 
 https://user-images.githubusercontent.com/71498717/197484893-6488f514-d44a-4310-be97-e724b3848458.jpg
 
-Kuten kuvasta näkyy tavaraa tuli riittävästi ja kun filtteröin näytettävän liikenteen tcp filtterillä, niin silmään osui JSON protokollan paketti.
+Kuten kuvasta näkyy tavaraa tuli riittävästi ja kun filtteröin näytettävän liikenteen tcp filtterillä, niin silmään osui HTTP/JSON protokollan paketti.
 
 https://user-images.githubusercontent.com/71498717/197484921-b02f158c-4151-4972-9f73-45fcb2d9e012.jpg
 
