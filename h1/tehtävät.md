@@ -48,7 +48,7 @@ Navigoitiin kansion sisään cd inhere komennolla. ls komento näytti tyhjää, 
 ~~Otetaan yhteys komennolla
 ssh bandit5cd @bandit.labs.overthewire.org -p 2220~~
 
-~~Navigoitiin kansion sisään cd inhere komennolla. Tiedossa oli, että tiedoston koko on 1033 bytes joten etsittiin sillä koolla komennolla find . -size 1033c. Oikean kokoinen tiedosto löytyi joten navigoitiin sinne komennoilla cd maybehere07 ja cat ./-file2 ~~
+~~Navigoitiin kansion sisään cd inhere komennolla. Tiedossa oli, että tiedoston koko on 1033 bytes joten etsittiin sillä koolla komennolla find . -size 1033c. Oikean kokoinen tiedosto löytyi joten navigoitiin sinne komennoilla cd maybehere07 ja cat ./-file2~~
 
 
 
