@@ -113,5 +113,65 @@ ssh bandit5cd @bandit.labs.overthewire.org -p 2220~~
 Kali linux oli jo asenettuna aikaisemmin niin en käy sen asennusta tarkemmin lävitse
 # F
 # G
+
+## HTTP Proxies
+Asetetaan selain toimimaan proxyn kautta avaamalla OWASP ZAP ja painamalla näppärää nappulaa, joka avaa selaimen
+
+![image](https://user-images.githubusercontent.com/71498717/197764891-46fe9a17-b899-4d8e-8c70-51a156ea680f.png)
+![image](https://user-images.githubusercontent.com/71498717/197765003-0121f262-4876-40f5-927d-2a8ed9d345a8.png)
+
+varmistetaan ZAP:in puolelta, että proxy toimii
+
+![image](https://user-images.githubusercontent.com/71498717/197765521-058cf685-d178-4f34-9bae-50d36c888a60.png)
+
+Filteröidään ZAP:in puolella proxyn kautta kulkevan liikenteen historiaa komennoilla 
+
+``` https://localhost:8080/WebGoat/.* ```
+ja
+```.*/WebGoat/service/.*mvc ````
+
+![image](https://user-images.githubusercontent.com/71498717/197766272-82954620-f022-4092-a43e-12e0222ffa8d.png)
+
+Seuraavaksi siepataan webgoatin lähettämä pyyntö ja muokataan sitä
+
+![image](https://user-images.githubusercontent.com/71498717/197767746-52e4d47c-dfe3-4143-afcd-2ce2888fe179.png)
+
+Pyyntö saatiin siepattua ja muokattua. Vihreällä korostetut kohdat ovat muokattu vastaamaan tehtävän vaatimuksia
+
+![image](https://user-images.githubusercontent.com/71498717/197770959-5bccf313-946f-4543-8f9f-216a3fb54a37.png)
+
+
+## SQL Injection (intro)
+Tehtiin alta pois perus SQL kyselyiden toiminta
+
+Ensimmäisessä kohdassa valittiin kyselylle
+
+``` "SELECT * FROM user_data WHERE first_name = 'John' AND last_name = '" + lastName + "'"; ```
+
+kun sukunimi oli 
+
+``` ' or '1' ='1 ```
+tuli kyselystä 
+``` SELECT * FROM user_data WHERE first_name = 'John' and last_name = '' or '1' = '1' ```
+Eli kun sukunimi oli "1 = 1" eli Tosi palautti kysely kaikki kohdat joista löytyi sukunimi
+
+![image](https://user-images.githubusercontent.com/71498717/197777676-10a2f669-dd0c-4801-84b5-dcb4853f86eb.png)
+
+Seuraavassa kohdassa kokeiltiin numeerista SQL injektiota kysely oli muodossa 
+``` "SELECT * FROM user_data WHERE login_count = " + Login_Count + " AND userid = "  + User_ID; ```
+
+Lisättiin Login_countn ja user_id 
+
+``` Login_Count = 0 User_Id = 0 OR '1' = '1' ```
+
+Jolloin kysely saatiin muotoon
+
+``` SELECT * From user_data WHERE Login_Count = 0 and userid= 0 OR '1' = '1' ```
+
+Näin ollen palautettiin user_data mikäli login_count = 0 JA userid = 0 TAI 1 = 1, eli kun user_data oli tosi se palautui ja näinollen palautti kaikki käyttäjät
+
+![image](https://user-images.githubusercontent.com/71498717/197784877-e0c78026-0c49-44b9-9a8f-3595f01f41f5.png)
+
+
 # H
 # X
