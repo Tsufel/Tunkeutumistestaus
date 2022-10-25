@@ -207,5 +207,9 @@ Toimi, koska ilmeisesti -- lisäämällä loppuun kyselyn loppuosa muuttuu komme
 ![image](https://user-images.githubusercontent.com/71498717/197802436-ff24e95a-9412-4ff9-a9ff-faede6a8c12f.png)
 
 
+## SQL INJECTION (advanced)
+
+
+
 # H
 # X
