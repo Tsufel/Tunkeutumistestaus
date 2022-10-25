@@ -13,6 +13,13 @@ $ java -jar webgoat-server-8.0.0.M26.jar
 ![image](https://user-images.githubusercontent.com/71498717/197750806-37a6575c-16a1-4c46-811b-b5dbe38ffb2a.png)
 
 
+Avataan web selain ja menään osoitteeseen http://localhost:8080/WebGoat/registration ja tehdän rekisteröityminen.
+
+Sitten ollaankin sisällä.
+
+![image](https://user-images.githubusercontent.com/71498717/197752315-87a0dac9-081c-4113-8b7c-5e8e3d5f242e.png)
+
+
 
 
 # B
