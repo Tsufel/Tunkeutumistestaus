@@ -1,4 +1,20 @@
-# A
+# A Webgoat 8 asennus
+Aloitetaan tärkeimmällä eli palomuurin aktivoimisella
+![image](https://user-images.githubusercontent.com/71498717/197750450-2492456e-3c56-4e98-953b-5b7076f09968.png)
+
+Sitten asennetaan webgoat 8 ja käynnistetään se
+
+```
+$ wget https://terokarvinen.com/2020/install-webgoat-web-pentest-practice-target/webgoat-server-8.0.0.M26.jar
+
+$ java -jar webgoat-server-8.0.0.M26.jar
+```
+
+![image](https://user-images.githubusercontent.com/71498717/197750806-37a6575c-16a1-4c46-811b-b5dbe38ffb2a.png)
+
+
+
+
 # B
 # C  bandit 0 - 2
 ## Taso 0
