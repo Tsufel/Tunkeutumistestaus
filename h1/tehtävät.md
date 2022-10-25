@@ -26,6 +26,35 @@ Sitten ollaankin sisällä.
 
 
 # B
+
+## HTTP Basics
+
+![image](https://user-images.githubusercontent.com/71498717/197757182-1f346a29-1c55-4bf5-a439-fc379de9e4f7.png)
+
+Ensimmäisen vastaus on POST ja se saadaan tietää kun avataan kehittäjän työkalut painamalla F12 ja tutkimalla network välilehteä
+
+![image](https://user-images.githubusercontent.com/71498717/197757535-3c420d48-56a6-4aaf-97bb-369242e7d60a.png)
+
+Hetki aikaa meni löytää takanumero, mutta kun kerran arvasi väärällä numerolla niin POST komennon pyyntö datasta löytyi taikanumero 86 joka oli oikein
+
+![image](https://user-images.githubusercontent.com/71498717/197759650-0c8fb8ca-daf6-4b93-a3e6-aeca37c22fad.png)
+
+## Developer Tools
+
+Ensimmäisessä kohdassa piti käyttää komentoa 
+
+```webgoat.customjs.phoneHome()```
+
+josta palautui numero -1883361499
+
+![image](https://user-images.githubusercontent.com/71498717/197760891-7f4c9625-900c-47f0-891b-9991b527430d.png)
+
+Toisessa tehtävässä go nappulan painaminen triggeröi POST pyynnön josta löytyy networkNum "35.10974554023596"
+
+![image](https://user-images.githubusercontent.com/71498717/197762713-491cf478-cb70-4bf2-8233-072d73b2a364.png)
+
+
+
 # C  bandit 0 - 2
 ## Taso 0
 Otetaan yhteys ssh yhteydellä banditin 2220 porttiin
