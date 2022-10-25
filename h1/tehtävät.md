@@ -1,5 +1,8 @@
 # A Webgoat 8 asennus
 Aloitetaan tärkeimmällä eli palomuurin aktivoimisella
+
+```$ sudo ufw enable ```
+
 ![image](https://user-images.githubusercontent.com/71498717/197750450-2492456e-3c56-4e98-953b-5b7076f09968.png)
 
 Sitten asennetaan webgoat 8 ja käynnistetään se
