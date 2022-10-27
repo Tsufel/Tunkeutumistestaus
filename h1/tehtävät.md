@@ -227,8 +227,15 @@ Toimi, koska ilmeisesti -- lisäämällä loppuun kyselyn loppuosa muuttuu komme
 
 ## SQL INJECTION (advanced)
 
+Ensimmäisessä tehtävässä piti tutkia kahta eri taulua ja niiden tietoja, sekä löytää Daven salasana.
 
+``` smith' ; SELECT * FROM user_data FULL OUTER JOIN user_system_data ON user_data.userid = user_system_data.userid WHERE userid = '1' OR '1' = '1 ```
 
+Käytettiin JOIN komentoa jolla saatiin liitettyä userid ja salasana käyttäjän muihin tietoihin
+
+![image](https://user-images.githubusercontent.com/71498717/198309603-06fa0df0-f1ed-4452-a4c0-39e1fabb6a66.png)
+
+Sieltä paljastui Daven salasana.
 
 # H
 # X
