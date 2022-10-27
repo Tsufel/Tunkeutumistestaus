@@ -111,6 +111,24 @@ ssh bandit5cd @bandit.labs.overthewire.org -p 2220~~
 # D 
 ![image](https://user-images.githubusercontent.com/71498717/197729766-da399083-3d41-4860-872d-d21a85eebeba.png)
 Kali linux oli jo asenettuna aikaisemmin niin en käy sen asennusta tarkemmin lävitse
+
+# E Challenge.fi
+
+## Where was this picture taken? 2/4
+
+Ladataan kuva koneelle ja avataan se ja katsotaan kuvan tietoja.
+
+![image](https://user-images.githubusercontent.com/71498717/198263346-a7dec0a1-6e2d-4b40-a521-1e5a811fc3ef.png)
+
+Kuvan tiedoista löytyy, että olemme Blackpoolissa. Googlen kartoista kun asiaa tarkemmin tutkii niin kyseessä on Blackpool Tower mikä kuvasta löytyy.
+
+![image](https://user-images.githubusercontent.com/71498717/198263917-29d68839-aa3a-4841-a425-00845ca9ddcf.png)
+
+
+
+
+
+
 # F
 # G
 
@@ -208,6 +226,7 @@ Toimi, koska ilmeisesti -- lisäämällä loppuun kyselyn loppuosa muuttuu komme
 
 
 ## SQL INJECTION (advanced)
+
 
 
 
