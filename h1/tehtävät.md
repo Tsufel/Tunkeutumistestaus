@@ -238,4 +238,13 @@ Käytettiin JOIN komentoa jolla saatiin liitettyä userid ja salasana käyttäj�
 Sieltä paljastui Daven salasana.
 
 # H
+
 # X
+
+Kuuntelin Herrasmieshakkereiden jakson Algoritmien maailma.
+
+- Nvidia on kasvanut yrityksenä Intelin ja Metan ohi johtuen koneoppimisen tarpeen kasvusta. Näytönohjaimet kun ovat erittäin hyviä laskentaan.
+- Deepfaket tai AI:lla luodut kuvat ovat kasvava turvallisuushuoli.
+- Niitä on myös käytetty tekemään valheellisia tiedonantoja.
+
+
