@@ -41,12 +41,28 @@ Tehdään nmap tiedettyyn ip-osoitteeseen
 
 ```-p-``` Tällä käydään kaikki avoimet portit läpi. ```-A``` vivulla saadaan käyttöjärjestelmä ja version tunnistus. ```-oA ports``` Tällä tallennetan saatu tulos "ports" tiedostoon.
 
-Avoimia portteja oli runsaasti ja silmään pisti tunnillakäydyn perusteella portti 21 ja ftp service ja portin 1524 bindshell
+Avoimia portteja oli runsaasti ja silmään pisti tunnillakäydyn perusteella portti 21 ja ftp service sekä portin 1524 bindshell
 
-![image](https://user-images.githubusercontent.com/71498717/199269496-d445679e-243b-435a-bc17-fe47c88b69c3.png)
+![image](https://user-images.githubusercontent.com/71498717/199274157-33822ca8-fe1d-4900-b0fb-0a4592b27edf.png)
+
 
  
 # C Murtaudu Metasploitableen
+Aloitetaan murtautuminen tutkimalla löytyykö metasploitista valmiiksi joku scripti.
+``` search vsftpd```
+
+![image](https://user-images.githubusercontent.com/71498717/199290877-c58b785f-2d03-46ac-9f7c-143a1f366f02.png)
+
+Sieltä löytyi käutettävä moduuli jota käytetään komennolla  ```use 0```
+asetetaan maali ip moduulille ```setg rhosts 192.168.252.3```
+
+![image](https://user-images.githubusercontent.com/71498717/199291767-0a81fae9-8418-4d2c-bb89-8df95514531c.png)
+
+ajetaan moduuli ```run``` komennolla ja ```ls``` komennolla varmistetaan, että ollaan sisällä
+
+![image](https://user-images.githubusercontent.com/71498717/199292992-553f2e1f-74ef-4d5f-8c4f-a8bfd6fdff5d.png)
+
+ 
 # D  Murtaudu Metasploitableen jollain toisella tavalla (eri kuin edellisessä kohdassa)
 # E Vulnhub. Asenna jokin kone VulnHubista ja tunkeudu siihen. Kannattaa valita helppo.
 # H
