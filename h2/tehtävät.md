@@ -58,12 +58,20 @@ asetetaan maali ip moduulille ```setg rhosts 192.168.252.3```
 
 ![image](https://user-images.githubusercontent.com/71498717/199291767-0a81fae9-8418-4d2c-bb89-8df95514531c.png)
 
-ajetaan moduuli ```run``` komennolla ja ```ls``` komennolla varmistetaan, että ollaan sisällä
+ajetaan moduuli ```run``` komennolla ja ```ls``` komennolla voidaan tarkistaa ollaanko sisälle päästy.
 
 ![image](https://user-images.githubusercontent.com/71498717/199292992-553f2e1f-74ef-4d5f-8c4f-a8bfd6fdff5d.png)
 
  
 # D  Murtaudu Metasploitableen jollain toisella tavalla (eri kuin edellisessä kohdassa)
+Kuten aikaisemmin huomattiin oli portissa 1524 metasploitable rootshell. Avoimeen rootshelliin voidaan yhdistää netcat komennolla ```nc 192.168.252.3 1524``` jossa viimeisin luku kertoo portin numeron.
+
+![image](https://user-images.githubusercontent.com/71498717/199309919-18f59d30-841a-4ee5-85ef-612af4fdd5e2.png)
+
+Tämä oli yllättävän helppo tapa päästä sisälle koneeseen. Ei vaatinut kuin avoimen root shellin. Toivottavasti omalla koneella ei ole tällaista takaporttia.
+
+
+
 # E Vulnhub. Asenna jokin kone VulnHubista ja tunkeudu siihen. Kannattaa valita helppo.
 # H
 # I
