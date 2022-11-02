@@ -72,7 +72,15 @@ Tämä oli yllättävän helppo tapa päästä sisälle koneeseen. Ei vaatinut k
 
 
 
-# E Vulnhub. Asenna jokin kone VulnHubista ja tunkeudu siihen. Kannattaa valita helppo.
+# E Vulnhub
+Asennettiin Vulnhubista Empire:Breakout https://www.vulnhub.com/entry/empire-breakout,751/
+Asetettiin samaan host only verkkoon kuin muutkin koneet. Ja liikkeelle lähdettiin tekemällä nmpa jotta koneen ip löytyisi
+```sudo nmap 192.252.168.0-255```
+
+Osoitteesta 192.252.168.5 kone näyttikin löytyvän. Sen jälkeen avattiin metasploit ```sudo msfdb run``` ja avattiin oma työtila ```workspace -a breakout```
+
+
+
 # H
 # I
 # J
