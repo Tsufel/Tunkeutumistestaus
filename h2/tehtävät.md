@@ -75,9 +75,34 @@ Tämä oli yllättävän helppo tapa päästä sisälle koneeseen. Ei vaatinut k
 # E Vulnhub
 Asennettiin Vulnhubista Empire:Breakout https://www.vulnhub.com/entry/empire-breakout,751/
 Asetettiin samaan host only verkkoon kuin muutkin koneet. Ja liikkeelle lähdettiin tekemällä nmpa jotta koneen ip löytyisi
-```sudo nmap 192.252.168.0-255```
+```sudo nmap 192.168.252.0-255```
 
-Osoitteesta 192.252.168.5 kone näyttikin löytyvän. Sen jälkeen avattiin metasploit ```sudo msfdb run``` ja avattiin oma työtila ```workspace -a breakout```
+Osoitteesta 192.168.252.5 kone näyttikin löytyvän. Sen jälkeen avattiin metasploit ```sudo msfdb run``` ja avattiin oma työtila ```workspace -a breakout``` Sen jälkeen tutkitaan tarkemmin jo löydettyä osoitetta sekä tallennetaan tiedot tiedostoon
+```db_nmap -p- -A 192.168.252.5 -oA breakoutports```
+
+Sieltä löytyi pari avointa porttia
+
+![image](https://user-images.githubusercontent.com/71498717/199445037-41f3634b-5f6d-485a-9cd4-7ad4ce746898.png)
+
+Ensimmäisenä silmään pisti Samba smbd 4.6.2 portissa 139. Hieman googlailtuani löytyi netistä sambacry niminen haavoittuvuus ja metasploitista löytyi siihen sopiva moduuli nimeltä ```exploit/linux/samba/is_known_pipename```. Sen jälkeen ```use exploit/linux/samba/is_known_pipename``` ja asetetaan kohde ```set rhosts 192.252.168.5```
+
+Jostain syystä tämä ei toiminut vaan palautti virhettä. (Syynä saattaa olla väärän ip-osoitteen käyttö........)
+
+![image](https://user-images.githubusercontent.com/71498717/199456862-f3a288a6-6199-4b91-a7e1-998797e07c0d.png)
+
+No ei se toiminut oikeallakaan osoitteella
+![image](https://user-images.githubusercontent.com/71498717/199470334-5afa0d03-9102-4158-8311-54c3884939e8.png)
+
+
+Hetken (pitkän ajan) päätä hakattuani seinään tyydyin katsomaan walktroughta, jotta saisi jonkun vinkin miten edetä. ```https://resources.infosecinstitute.com/topic/empire-breakout-vulnhub-ctf-walkthrough/```
+Täältä löytyi vinkki mennä apache nettisivulle joka löytyy koneen ip-osoitteella. Ja jostain syystä tämä ei toimi koneellani, joten en tiedä mistä kiikastaa. Kohde kuitenkin vastaa pingeihin joten ei se ole kokonaan irti verkosta. Ja silmät kun otti käteen niin huomasin, että osoite oli väärä.
+
+
+Uudella yrityksellä, kun laittoi selaimeen ```view-source:http://192.168.252.5/``` ja selasi koodia tarpeeksi alas tuli vastaan erikoinen pätkä merkkejä.
+
+![image](https://user-images.githubusercontent.com/71498717/199470646-db491dcb-5764-405e-ba8b-fbac3288c242.png)
+
+
 
 
 
