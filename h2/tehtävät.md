@@ -102,7 +102,34 @@ Uudella yrityksellä, kun laittoi selaimeen ```view-source:http://192.168.252.5/
 
 ![image](https://user-images.githubusercontent.com/71498717/199470646-db491dcb-5764-405e-ba8b-fbac3288c242.png)
 
+Ilmeisesti tekstipätkä on branfuck koodia ja sen kun käänsi tuli vastaukseksi salasana ```.2uqPEfj3D<P'a-3```
 
+Nyt kun päästiin selailun makuun käydän muutkin portit läpi ja aloitetaan  ```https://192.168.252.5:20000/```. Sieltä tuli login sivu vastaan ja salasana taidetaankin tietää, mutta käyttäjä vielä uupuu.
+
+![image](https://user-images.githubusercontent.com/71498717/199472991-6f7746e3-f7f7-4b95-92a0-9a4d61f1a612.png)
+
+
+```db_nmap``` antoi käyttäjänimeksi unknown
+![image](https://user-images.githubusercontent.com/71498717/199476188-65f9ec4a-1c5a-4282-b659-0484b67a73cb.png)
+
+Joten jälleen hieman päätä hakattuani seinään päätin katsoa hieman vinkkejä. Vinkiksi annettiin enum4linux. Komennolla ```enum4linux 192.168.252.5``` 
+
+Sieltä löytyi käyttäjä cyber, joka toivottavasti toimii myös kirjautumiseen selaimessa.
+
+![image](https://user-images.githubusercontent.com/71498717/199476972-4c4da8cc-e675-49aa-8958-15b86ce36c67.png)
+
+Tällä käyttäjällä päästiin sisään webmin kirjautumisesta
+
+![image](https://user-images.githubusercontent.com/71498717/199477800-f1fea799-0f61-4d99-8d81-25b2a294a6a5.png)
+
+
+Sivulla päästiin käsiksi shelliin
+
+![image](https://user-images.githubusercontent.com/71498717/199480274-0e35c9c6-60df-42ac-8df9-10b6e7220e8c.png)
+
+Shellissä käytettiin komentoja ```ls``` ja ```cat.user.txt``` sieltä löytyi ensimmäinen lippu.
+
+![image](https://user-images.githubusercontent.com/71498717/199480579-49e331ab-5dfb-481a-a4ba-8c179dc4c405.png)
 
 
 
