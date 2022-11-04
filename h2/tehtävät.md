@@ -133,7 +133,54 @@ Shellissä käytettiin komentoja ```ls``` ja ```cat.user.txt``` sieltä löytyi 
 
 
 
-# H
+# H Metasploitable3 
+Aloitettiin Metasploitable 3 asennuksella ja käynnistyksellä. Käynnistettiin Kalissa metasploit  ```sudo msfdb run``` ja sen jälkeen tehtiin omatyötila ```workspace -a meta``` ja käynnistettiin nmap kohde ip-osoitteeseen ```db_nmap -p- -A 192.168.252.7 -oA meta3``` ja tallennettiin saatu tieto myös tiedostoon meta3.
+
+![image](https://user-images.githubusercontent.com/71498717/199994528-2bb8a82a-4ba0-4d92-975a-6fcea9e146ee.png)
+
+
+Portissa 80 näytti olevan jotain tiedostoja, niin käydään niitä ensin tutkimassa. Avataan selain ja mennään osoitteeseen ```http://192.168.252.7/payroll_app.php```. Sieltä löytyi kirjautumissivu Payroll appiin. Toimisikohan täällä SQL-injektio? 
+Kokeillaan käyttäjänimeksi ```letmein``` ja salasanaksi ```letmein' OR '1'='1```
+
+![image](https://user-images.githubusercontent.com/71498717/199995981-45cc43e9-22e2-4e4d-bb1a-75b7b784ef92.png)
+
+Ja sillähän päästiin sisään. Olisikohan näistä tunnuksista jotain hyötyä koneen aukaisemisessa.
+
+![image](https://user-images.githubusercontent.com/71498717/199996180-51a59fd6-40e1-451e-ae46-11ec8b31742c.png)
+
+Kun meillä kerran on mahdollisia käyttäjänimiä, niin kokeillaan käyttää portin 3306 MySQL exploittia. Haetaan sql exploitteja ```search mysql```  Sieltä löytyy haluamamme moduuli nimeltä mysql_login.
+![image](https://user-images.githubusercontent.com/71498717/200000051-a418f6a3-df93-4ad0-bb7f-af603899f882.png)
+
+Sen jälkeen ```use 10``` komennolla valitaan moduuli. Ja ```options``` jotta nähdään tarvittavat tiedot.
+
+![image](https://user-images.githubusercontent.com/71498717/200000415-ceb0ec40-84e8-4c68-ab29-9a81b99c6c7c.png)
+
+Sitten luodaan käyttäjänimi lista jo löydetyistä käyttäjistä, sekä geneerisistä nimistä. ```nano sqlusernames.txt```
+![image](https://user-images.githubusercontent.com/71498717/200002251-b0e6a5d4-41f0-47f7-9d1c-43377460f2fe.png)
+
+Ja sama salasanoista ```nano sqlpwd.txt```. Käyttäjien ollessa starwars painotteisia laitetaan salasanoihin mukaan starwars aiheisia salasanoja.  ![image](https://user-images.githubusercontent.com/71498717/200003883-1d1d6a09-e610-43e1-a63e-3d8a70d5690c.png)
+
+Sen jälkeen asetetaan luodut tiedoston moduuliin. ```set user_file mysqlusernames.txt``` ```set pass_file sqlpwd.txt```
+
+![image](https://user-images.githubusercontent.com/71498717/200004641-f49a8cde-cd29-46de-ab52-b8352a652c6c.png)
+
+Asetetaan kohde koneen ip ```set rhosts 192.168.252.7```  ![image](https://user-images.githubusercontent.com/71498717/200005165-1b980006-9b58-4a80-bcfe-c5f18ba769e8.png)
+
+Sitten laitetaan vielä ```set user_as_pass true``` jotta ohjelma kokeilee käyttäjänimeä salasanana. ![image](https://user-images.githubusercontent.com/71498717/200005587-997b3e6f-68ff-4df9-8e35-4e3a6f24f81d.png)
+
+Ja jos olisi ollut fiksu olisi tarkistanut etukäteen onko kohdekoneen mysql versio tuettu tai voiko siihen yhditää etänä...
+
+![image](https://user-images.githubusercontent.com/71498717/200013371-1c1a4001-584e-4e72-82a2-530e7dbc1949.png)
+
+Hiukan aikaa pähkäiltyäni ja googleteltuani päätin kokeilla ```use auxiliary(scanner/mysql/mysql_version)``` moduulia. Se palautti, että oman koneen osoitteesta ei voi yhditää tälle mysql serverille.
+![image](https://user-images.githubusercontent.com/71498717/200015881-cf817f81-c64f-4965-a2d5-c4f77c387fc3.png)
+
+Täytynee siis päästä käsiksi shelliin ja saada meterpreter yhteys ja sitten kokeilla uudestaa.
+
+
+
+
+
 # I
 # J
 
