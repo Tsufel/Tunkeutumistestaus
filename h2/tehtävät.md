@@ -175,9 +175,9 @@ Ja jos olisi ollut fiksu olisi tarkistanut etukäteen onko kohdekoneen mysql ver
 Hiukan aikaa pähkäiltyäni ja googleteltuani päätin kokeilla ```use auxiliary(scanner/mysql/mysql_version)``` moduulia. Se palautti, että oman koneen osoitteesta ei voi yhditää tälle mysql serverille.
 ![image](https://user-images.githubusercontent.com/71498717/200015881-cf817f81-c64f-4965-a2d5-c4f77c387fc3.png)
 
-Täytynee siis päästä käsiksi shelliin ja saada meterpreter yhteys ja sitten kokeilla uudestaa.
+Täytynee siis päästä käsiksi shelliin ja saada meterpreter yhteys ja sitten kokeilla uudestaa. Onneksi kohdekoneessa näytti olevan proftpd portissa 21 avoin. Toivottavasti sillä pääsee sisälle.
 
-
+Täytynee jättää tämä hieman hautumaan.
 
 
 
