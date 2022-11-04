@@ -136,3 +136,10 @@ Shellissä käytettiin komentoja ```ls``` ja ```cat.user.txt``` sieltä löytyi 
 # H
 # I
 # J
+
+# X Yhteenveto artikkelista
+€ Jaswal 2020: Mastering Metasploit - 4ed: Chapter 1: Approaching a Penetration Test Using Metasploit
+
+-Aina jos mahdollista yritä saada meterpreter käyntiin
+-Piilota prosessi jonkin toisen prosessin sisään, mitä ei todennäköisesti suljeta
+-Metasploitissa on paljon moduuleja, jotka olisi hyvä tietää jo valmiiksi käytön helpottamiseksi
