@@ -65,6 +65,100 @@ Ja näin pääsimme koneeseen sisään.
  
 
 # D
+## SQL Injection (intro)
+Tehtiin alta pois perus SQL kyselyiden toiminta
+
+Ensimmäisessä kohdassa valittiin kyselylle
+
+``` "SELECT * FROM user_data WHERE first_name = 'John' AND last_name = '" + lastName + "'"; ```
+
+kun sukunimi oli 
+
+``` ' or '1' ='1 ```
+tuli kyselystä 
+``` SELECT * FROM user_data WHERE first_name = 'John' and last_name = '' or '1' = '1' ```
+Eli kun sukunimi oli "1 = 1" eli Tosi palautti kysely kaikki kohdat joista löytyi sukunimi
+
+![image](https://user-images.githubusercontent.com/71498717/197777676-10a2f669-dd0c-4801-84b5-dcb4853f86eb.png)
+
+Seuraavassa kohdassa kokeiltiin numeerista SQL injektiota kysely oli muodossa 
+``` "SELECT * FROM user_data WHERE login_count = " + Login_Count + " AND userid = "  + User_ID; ```
+
+Lisättiin Login_countn ja user_id 
+
+``` Login_Count = 0 User_Id = 0 OR '1' = '1' ```
+
+Jolloin kysely saatiin muotoon
+
+``` SELECT * From user_data WHERE Login_Count = 0 and userid= 0 OR '1' = '1' ```
+
+Näin ollen palautettiin user_data mikäli login_count = 0 JA userid = 0 TAI 1 = 1, eli kun user_data oli tosi se palautui ja näinollen palautti kaikki käyttäjät
+
+![image](https://user-images.githubusercontent.com/71498717/197784877-e0c78026-0c49-44b9-9a8f-3595f01f41f5.png)
+
+Seuraavassa kohdassa pääset katsomaan omia tietoja firman järjestelmässä tarvitset oman nimen ja TAN numeron. Kysely on muodossa
+``` "SELECT * FROM employees WHERE last_name = '" + name + "' AND auth_tan = '" + auth_tan + "'; ```
+
+Lisäämällä nimeksi minkätahansa ja TAN numeroksi  ```3SL99A' OR '1' = '1 ```
+
+Tulee kyselystä seuraavanlainen
+
+``` "SELECT * FROM employees WHERE last_name = 'Smith' AND auth_tan = '3SL99A' OR '1' = '1'; ```
+
+Ja pääset näkemään kollegoiden tiedot
+
+![image](https://user-images.githubusercontent.com/71498717/197787736-bc717237-8c9d-45e5-83fe-0d56cdf2bd9e.png)
+
+Nyt on tarkoitus muokata omaa palkkaa ja kysely pysyy samana eli
+
+``` "SELECT * FROM employees WHERE last_name = '" + name + "' AND auth_tan = '" + auth_tan + "'; ```
+
+Kun muokataan jälleen auth_tan kohtaa sopivilla komennoilla saadaan palkka nousemaan
+
+``` "SELECT * FROM employees WHERE last_name = 'Smith' AND auth_tan = 3SL99A'; UPDATE employees SET SALARY = '88000' WHERE AUTH_TAN = '3SL99A; ```
+![image](https://user-images.githubusercontent.com/71498717/197791111-11ca9998-1484-4dd7-8a09-27d599d16599.png)
+
+Viimeisessä kohdassa pyyhitään jäljet pudottamalla access_log. Itse saat kirjoittaa mitä action sisältää.
+
+``` nothing ' ; DROP TABLE access_log;' ```
+
+Tätä yritin monesti ja ei toiminut, mutta 
+
+``` nothing ' ; DROP TABLE access_log;-- ```
+
+Toimi, koska ilmeisesti -- lisäämällä loppuun kyselyn loppuosa muuttuu kommentiksi jolloin ' ja muitten määrän ei tarviste täsmätä tai mitä kyselyn jälkeen lukeekaan ei lueta ajettavaan komentoon.
+
+![image](https://user-images.githubusercontent.com/71498717/197802436-ff24e95a-9412-4ff9-a9ff-faede6a8c12f.png)
+
+
+## A2 Broken authentication
+Tehtävä vaati, että POST kaapataan välissä ja muutetaan lähetettyä dataa, joten avataan ensin ZAP ja laitetaan se väliin. Avattiin Zapilla proxy selain ja laitetaan se katkaisemaan kaikki liikenne. Nyt on record aloitettu ja submit painettu webgoatista.Sitten selataan kunnes vastaan tulee haluttu POST request.  
+![image](https://user-images.githubusercontent.com/71498717/201370683-7222f7b8-2529-4fb6-93fb-936fee681d37.png)  
+Löydettiin haluttu ja nyt siitä poistetaan molemmat secQuestionit ja sen jälkeen annetaan requestin jatkaa matkaa.  
+![image](https://user-images.githubusercontent.com/71498717/201371499-e364c6ab-cab6-424f-aca6-3e3bb639fc09.png)  
+Se ei toiminut toivotulla tavalla joten kokeillaan jotain muuta.  
+![image](https://user-images.githubusercontent.com/71498717/201382416-24f001ef-787c-4ad9-ac62-6e301cf82149.png)  
+Kokeillaan jos vastauksiki vaihtaisi "true". Ja se ei toiminut.  
+![image](https://user-images.githubusercontent.com/71498717/201382739-f917e201-3b80-4ff5-8f20-cd8582ff5e82.png)  
+Kokeillaan josko uudelleen nimeäminen toimisi. Ja sehän toimi.  
+![image](https://user-images.githubusercontent.com/71498717/201383053-4b9ed77c-2a0a-4577-90a3-3c644ba9976d.png)  
+  
+## A3 Sensitive data exposure
+Tässäkin tehtävässä tulee käyttää ZAPpia pakettin pysäyttämiseen ja tutkimiseen. Joten zapista break päälle ja selaimesta log in.  
+![image](https://user-images.githubusercontent.com/71498717/201383506-ab8e90f1-235e-40f4-8fda-55d93b8820c8.png)  
+Sieltä paljastui käyttäjätunnus ja salasana, koska niitä ei ole salattu millään tavalla. Täytyy muistaa salata lähetetyt paketit jos niissä on jotain arkaluontoista.  
+![image](https://user-images.githubusercontent.com/71498717/201383754-84e124d3-6b99-43a2-81b8-905c165d4fed.png)  
+
+
+## A7 Cross Site Scripting (XSS): Cross site scripting
+
+Ei toiminut scriptit URL kentässä joten piti laittaa ne konsoliin.  
+![image](https://user-images.githubusercontent.com/71498717/201386122-49bf4acc-230c-4822-9fcf-92bb5d202541.png)  
+![image](https://user-images.githubusercontent.com/71498717/201386275-be133adb-e0ad-4761-9759-8408c08cd20f.png)  
+
+
+
+
 
 # X
 ## OWASP 10 2017
