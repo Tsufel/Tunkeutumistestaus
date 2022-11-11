@@ -155,6 +155,10 @@ Sieltä paljastui käyttäjätunnus ja salasana, koska niitä ei ole salattu mil
 Ei toiminut scriptit URL kentässä joten piti laittaa ne konsoliin.  
 ![image](https://user-images.githubusercontent.com/71498717/201386122-49bf4acc-230c-4822-9fcf-92bb5d202541.png)  
 ![image](https://user-images.githubusercontent.com/71498717/201386275-be133adb-e0ad-4761-9759-8408c08cd20f.png)  
+Näytti olevan sama cookie eri välilehtien välillä.
+
+Tutkitaan sivua kehittäjän työkaluilla ja huomataan, että input type on text, joten sinne voi myös kirjoittaa  omaa koodia.  
+![image](https://user-images.githubusercontent.com/71498717/201387442-7c2fd4bd-fcaf-453e-97d3-903898feff51.png)  
 
 
 
