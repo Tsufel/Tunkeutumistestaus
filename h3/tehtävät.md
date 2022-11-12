@@ -157,8 +157,47 @@ Ei toiminut scriptit URL kentässä joten piti laittaa ne konsoliin.
 ![image](https://user-images.githubusercontent.com/71498717/201386275-be133adb-e0ad-4761-9759-8408c08cd20f.png)  
 Näytti olevan sama cookie eri välilehtien välillä.
 
-Tutkitaan sivua kehittäjän työkaluilla ja huomataan, että input type on text, joten sinne voi myös kirjoittaa  omaa koodia.  
+Tutkitaan sivua kehittäjän työkaluilla ja huomataan, että pankkikortin numeron kentän input type on text, joten sinne voi myös kirjoittaa  omaa koodia.  
 ![image](https://user-images.githubusercontent.com/71498717/201387442-7c2fd4bd-fcaf-453e-97d3-903898feff51.png)  
+Kokeillaan ```<script>alert("hieno koru hermanni")</script>```  
+![image](https://user-images.githubusercontent.com/71498717/201467738-1179613b-9670-46c6-9e84-4353c9377ee5.png)  
+Ja sehän toimi. Toki vain omalla koneellani, joten ei mikään kovin kummoinen edesottamus.
+
+## A8:2013 Request Forgeries
+Aloitetaan tutkimalla koodia kehittäjän työkaluilla. Sieltä löytyy, että submit query nappula lähettää POST metodilla pyynnön.  
+![image](https://user-images.githubusercontent.com/71498717/201469236-7ea96563-aa75-4888-bc6f-b5253cf6139a.png)  
+Submit queryä painamalla saadaan "väärä" sivu auki.  
+![image](https://user-images.githubusercontent.com/71498717/201469267-9c008799-1f79-459c-ac25-662e99bacda8.png)  
+Nyt pitää luoda samanlainen POST pyyntö samalle sivulle, jotta saadaan sivu toivottavasti auki. Ja naamioidaan se pyyntö vielä html sivuksi. Pyyntöön pitää muistaa ottaa mukaan kaikki, mikä oli alkuperäisessä pyynnössä mukana.  
+![image](https://user-images.githubusercontent.com/71498717/201469523-de7cd329-e0ad-4436-93f0-34f2407fed37.png)  
+Tämänlainen siitä saatiin ja pitää muistaa nimetä tiedosto .html.  
+![image](https://user-images.githubusercontent.com/71498717/201469611-87e23763-0079-4e30-b3e1-6940f7be5302.png)  
+Saatiin hieno nappula sivulle ja sitä kun painaa niin aukeaa "oikea" sivu.  
+![image](https://user-images.githubusercontent.com/71498717/201469682-fd906ee7-bfae-458f-aed1-89218db30773.png)  
+![image](https://user-images.githubusercontent.com/71498717/201469694-d5e1375f-29ca-4701-81ab-1449cd6d1c85.png)  
+![image](https://user-images.githubusercontent.com/71498717/201469707-0bc84857-4054-411b-95bd-a4d622008aa7.png)  
+
+Seuraavaksi pitää lähettää arvostelu kirjautuneen käyttäjän puolesta, niin kokeillaan samaa metodia kuin aikaisemmassa eli tehdään .html tiedosto, joka lähettää POST:illa arvostelun. Aloitetaan tutkimalla lomaketta tarkemmin.  
+![image](https://user-images.githubusercontent.com/71498717/201470127-51b81b76-8457-4785-80c1-ea435f3be21f.png)  
+Muutetaan kaikista inputeista hidden, jotta käyttäjä ei näe mitä hän arvostelee.  
+![image](https://user-images.githubusercontent.com/71498717/201470445-982044f9-6826-46d0-9b19-30fed92f8465.png)  
+![image](https://user-images.githubusercontent.com/71498717/201470459-74e0f446-f6b8-474d-85a7-711eea1cc1f2.png)  
+![image](https://user-images.githubusercontent.com/71498717/201470468-cb6dbdbd-74b6-4a36-b333-f094011d7d6b.png)  
+Näytti arvostelu menevän läpi vaikka itse ei mitään kirjoittanut. Kuinkakohan tärkeä tuo validateReq on tuossa lomakkeessa? Nähtävästi tärkeä. ![image](https://user-images.githubusercontent.com/71498717/201470613-19eb42c3-3481-495e-8754-2aab5685b7ae.png)  
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -187,4 +226,5 @@ Hyökkääjä kaappaa käyttäjän cookien lähettämällä sen omalle sivulleen
 - selaimessa voi estää javascriptien ajon
 
 
-# Y
+# Y  Cross site story
+
