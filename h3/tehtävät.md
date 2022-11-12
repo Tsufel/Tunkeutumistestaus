@@ -189,20 +189,6 @@ Näytti arvostelu menevän läpi vaikka itse ei mitään kirjoittanut. Kuinkakoh
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # X
 ## OWASP 10 2017
 ### A1 Injection
@@ -228,3 +214,4 @@ Hyökkääjä kaappaa käyttäjän cookien lähettämällä sen omalle sivulleen
 
 # Y  Cross site story
 
+Matti selailee nettiä ja törmää sivustoon, mikä antaa käyttäjän kirjoittaa sivulle kommentteja. Hetken pähkäiltyään hän kirjoittaa kommentteihin scriptin, joka lähettää käyttäjän cookien omalle serverilleen tiettyyn tiedostoon. Johannes eksyy samalle sivustolle ja kun hän lataa sivun kommentissa oleva scripti ajetaan hänen selaimessaan ja selain lähettää cookiensa Matin serverille. Tällä cookiella Matti voi käyttää Johanneksen istuntoa sillä sivustolla ja esiintyä Johanneksena.
