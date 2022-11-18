@@ -106,7 +106,7 @@ Tulostaa ajonaikana tietoa paketeista mitä lähetetään. Tästä käy ilmi min
 ![image](https://user-images.githubusercontent.com/71498717/202781235-ce5749a7-dbc1-4e1d-9e5a-797d35d664e6.png)
 Status antaa tietoja siitä kuinka paljon aikaa on kulunut ja kuinka paljon on jäljellä.
 
-# normaalisti 'sudo nmap'. Miten nmap toiminta eroaa, jos sitä ajaa ilman sudoa? Suorita ja analysoi esimerkki.
+# I normaalisti 'sudo nmap'. Miten nmap toiminta eroaa, jos sitä ajaa ilman sudoa? Suorita ja analysoi esimerkki.
 ## nmap
 ![image](https://user-images.githubusercontent.com/71498717/202782770-310207c7-1887-4425-8209-9c069e1bdc29.png) 
 ![image](https://user-images.githubusercontent.com/71498717/202783368-1f5c0144-17cb-44a6-93b3-9d5db7cbca55.png)  
@@ -116,6 +116,31 @@ Ainoa ero minkä tässä äkkiseltään huomaa on,että kun käyttää sudoa tul
 ## sudo nmap
 ![image](https://user-images.githubusercontent.com/71498717/202782807-daa94baa-1fbf-4b40-ad13-529899a9d9fe.png)  
 ![image](https://user-images.githubusercontent.com/71498717/202783270-b0232be7-bb23-49a3-92b6-24a874378155.png)
+
+# M nmap, vertaile -A ja ilman kestoa koneeseen, jossa on useita portteja auki
+```sudo nmap -A 192.168.252.3```  ```-A``` lippu tarkoittaa agressiivista skannausta, eli löytyy os detection, script scanning ja traceroute. Aikaa kului 184 sekunttia ja wireshgarkin mukaan paketteja liikkui lähes 5000 kappaletta.  
+![image](https://user-images.githubusercontent.com/71498717/202785535-9f4238e9-6c81-483c-a8b3-72532d1bbab6.png)  
+![image](https://user-images.githubusercontent.com/71498717/202785647-7c4c6cee-c11e-409d-a98b-814ccd7a4340.png)  
+![image](https://user-images.githubusercontent.com/71498717/202785724-96f547ad-1302-47d2-9381-e687df1d6a49.png)  
+Myös UDP protokollan paketteja lähetettiin joka varmasti hidasti skannauksen nopeutta.  
+
+```sudo nmap 192.168.252.3```  
+Aikaa kului alle sekuntti ja paketteja lähetettiin noin 2000 kpl. myöskään UDP paketteja ei lähetetty yhtäkään. Nmapin tulostama data on toki myös paljon rajatumpaa ilman ```-A``` lippua 
+![image](https://user-images.githubusercontent.com/71498717/202786244-60c909cd-765f-4bfd-a638-d117accc3342.png)  
+![image](https://user-images.githubusercontent.com/71498717/202786290-47a07687-3783-414e-b158-ee7963733efd.png)  
+
+# N Ninjojen tapaan. Piiloutuuko nmap-skannaus hyvin palvelimelta?
+
+
+
+
+
+
+
+
+
+
+
 
 
 ## Nmap reference guide
