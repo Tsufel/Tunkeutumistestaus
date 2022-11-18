@@ -71,11 +71,52 @@ Portti 443 on yleensä avoin,mutta kohdekoneessa se on kiinni ja se silti näkyy
 Paketteja jälleen kertyi 130t jotan ei käydä niitä liian tarkasti läpi, mutta kaikkiin mahdollisiin portteihin lähetettiin [SYN] paketti. Suljetuista porteista vastattiin [RST][ACK] paketilla.
 
 # G nmap ip-osoitteiden valinta; luettelo, verkkomaskilla 10.10.10.0/24, alku- ja loppuosoitteella 10.10.10.100-130
-# H
+```sudo nmap 192.168.252.0/24``` Komennolla nmap käy läpi kaikki 256 verkkomaskin takana olevaa osoittetta eli 192.168.252.0-255  
+![image](https://user-images.githubusercontent.com/71498717/202774090-d0a17f96-3b69-4740-a99c-55dc548dfd95.png)  
+Kätevä jos haluaa käydä läpi kaikki osoitteet tuolta väliltä.
 
-# Z
-##
-##
+```sudo nmap 192.168.252.100-130``` Komennolla käydään läpi kaikki 100-130 välillä olevat ip-osoitteet. Nitä on 31 kappaletta.  
+![image](https://user-images.githubusercontent.com/71498717/202774557-62e3e99f-d1f1-4c5a-8664-33251820f87a.png)  
+Kätevä jos tietää miltä väliltä haluaa tutkia osoitteita.
+
+# H nmap output files -oA foo
+```sudo nmap -oA foofoo 192.168.252.3```  
+```-oA``` lippu tallentaa saadut tulokset kolmessa eri tiedostomuodossa.  
+![image](https://user-images.githubusercontent.com/71498717/202775107-3d6f591f-66c1-4085-9c52-fc730905a803.png)
+![image](https://user-images.githubusercontent.com/71498717/202775146-4e7aaebf-2099-4ae0-912e-bf70ee426dbb.png)  
+```.gnmap```  
+![image](https://user-images.githubusercontent.com/71498717/202775524-ecceb2d8-cdc4-4281-9a1e-984c17babc33.png)  
+Tätä tiedostomuota voi käyttää hos haluaa käyttää ```grep``` työkalua. Tulokset ovat riveittäin.
+```.nmap```  
+![image](https://user-images.githubusercontent.com/71498717/202775576-3115d119-4cbf-49a6-af0d-f2e10f3194cd.png)  
+Tämä muoto on helpoiten luettava, kun tiedostomuoto on sama mitä nmap tulostaa muutenkin.
+```.xml```  
+![image](https://user-images.githubusercontent.com/71498717/202775612-511b4d8b-f94f-4526-b567-b9a14ff65839.png)  
+Jo shaluaa tehdä raportteja ja näyttää ne esim. nettisivulla tämä muoto on siihen kaikista luontevin.
+
+# K nmap ajonaikaiset toiminnot (man nmap: runtime interaction): verbosity v/V, help ?, packet tracing p/P, status s
+## verbosity v/V ajonaikana tai lippuna -v
+![image](https://user-images.githubusercontent.com/71498717/202780006-b31ebf1e-ea2d-4bf1-854c-c90fe1dd6a8e.png)  
+Verbosityä lisäämällä saadaan nmap tulostamaan lisää tietoa esim. skannauksen tilasta ja mitä porttia ollaan skannaamassa tällä hetkellä.
+## packet tracing p/P
+![image](https://user-images.githubusercontent.com/71498717/202780394-d731e52c-4a66-41cf-b630-6640fd4c0679.png)  
+Tulostaa ajonaikana tietoa paketeista mitä lähetetään. Tästä käy ilmi minkä protokollan paketteja menee ja kuka lähettää kenelle. Myös pakettien koko ja tarkoitus selviää. [SYN][ACK][RST] eli käytännössä kaikki mitä myös wireshark tekee.
+
+## status s
+![image](https://user-images.githubusercontent.com/71498717/202781235-ce5749a7-dbc1-4e1d-9e5a-797d35d664e6.png)
+Status antaa tietoja siitä kuinka paljon aikaa on kulunut ja kuinka paljon on jäljellä.
+
+# normaalisti 'sudo nmap'. Miten nmap toiminta eroaa, jos sitä ajaa ilman sudoa? Suorita ja analysoi esimerkki.
+## nmap
+![image](https://user-images.githubusercontent.com/71498717/202782770-310207c7-1887-4425-8209-9c069e1bdc29.png) 
+![image](https://user-images.githubusercontent.com/71498717/202783368-1f5c0144-17cb-44a6-93b3-9d5db7cbca55.png)  
+
+Ainoa ero minkä tässä äkkiseltään huomaa on,että kun käyttää sudoa tulostaa nmap myös MAC osoitteen. Molememmat nmapit lähettävät suunnilleen saman verran paketteja. Ja sudo nmap lähettää broadcastina kyselyn mikä kone löytyy halutusta osoitteesta ja saa vastauksena kohdekoneen MAC osoitteen.
+
+## sudo nmap
+![image](https://user-images.githubusercontent.com/71498717/202782807-daa94baa-1fbf-4b40-ad13-529899a9d9fe.png)  
+![image](https://user-images.githubusercontent.com/71498717/202783270-b0232be7-bb23-49a3-92b6-24a874378155.png)
+
 
 ## Nmap reference guide
 https://nmap.org/book/man.html
