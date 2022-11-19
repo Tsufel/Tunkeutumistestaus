@@ -130,10 +130,21 @@ Aikaa kului alle sekuntti ja paketteja lähetettiin noin 2000 kpl. myöskään U
 ![image](https://user-images.githubusercontent.com/71498717/202786290-47a07687-3783-414e-b158-ee7963733efd.png)  
 
 # N Ninjojen tapaan. Piiloutuuko nmap-skannaus hyvin palvelimelta?
+Apache serveri pyörii portissa 80 joten rajataan skannausta siihen porttiin ja tehdään myös versioskannaus ```sudo nmap -sV -p 80 192.168.252.4```
+Oli virhe painaa p kesken ajon joka aktivoi pakettien seurannan. Dataa tuli niin paljon että meni terminaali solmuun. Apachen vakiosivu palautuu salaamattomana ja sitä voi tarkastella esim. wiresharkilla.
+![image](https://user-images.githubusercontent.com/71498717/202849551-32350e82-5721-44a7-bbb9-37737a03840b.png)  
+![image](https://user-images.githubusercontent.com/71498717/202849679-8d0b7935-97b6-4afa-867e-4d1a06842e8e.png)  
+Komennolla ```sudo cat /var/log/apache2/access.log``` voimme tarkastella apachen omia logeja. Täältä voimme huomata, että sinne jää merkintä nmapin käytöstä. Myöskin se herättää huomiota, että samasta osoitteesta on tullut useampi GET pyyntö pienen ajan sisällä.  
+![image](https://user-images.githubusercontent.com/71498717/202849886-04aaefa8-71ce-4a43-bc99-baa46880098a.png)  
+![image](https://user-images.githubusercontent.com/71498717/202849961-50f45819-781f-4dcd-b1e1-fd7caf0605c4.png)  
+Kuusi GET pyyntöä alle sekunttiin on suhteellisen paljon.
 
+# e Mitkä ovat tavallisimmat tai kiinnostavimmat palvelut, joita UDP-skannauksella voisi löytää?
+Tavallisimmat UDP skannauksella löytyvät palvelut ovat Domain Name Service (DNS), Simple Network Management Protocol (SNMP) ja Dynamic Host Configuration Protocol (DHCP). Lähde https://www.geeksforgeeks.org/what-is-udp-scanning/
 
-
-
+# f  Miksi UDP-skannaus on hankalaa ja epäluotettavaa? Miksi UDP-skannauksen kanssa kannattaa käyttää --reason flagia?
+UDP skannauksessa ongelmaksi tulee se, että kohdeportit ei välttämättä vastaa mitään jolloin portin statukseksi tulee open|filtered . Myöskin koska vastausta ei tule saadusta paketista välttämättä pitää paketti lähettää muutamaan kertaan, jolloin voidan olla varmoja paketin saapumisesta perille. ICPM myös rajoittaa vakiona joissain linux versioissa vastauksien nopeutta esim. yhteen vastaukseen sekunnissa. ```--reason``` lippua kannattaa käyttää udp skannauksissa, koska sen avulla saat tiedon syystä minkä takia mikäkin portti on merkattu avoimeksi/suljetuksi. Helpottaa elämää kun tietää, että miksi portti on closed|filtered.
+lähteet https://nmap.org/book/scan-methods-udp-scan.html https://geek-university.com/the-reason-flag/
 
 
 
