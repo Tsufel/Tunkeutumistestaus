@@ -152,7 +152,19 @@ lähteet https://nmap.org/book/scan-methods-udp-scan.html https://geek-universit
 
 
 
+# Z
+## Santos et al: The Art of Hacking (Video Collection)
+https://learning.oreilly.com/videos/the-art-of/9780135767849/9780135767849-SPTT_04_01/
+- Tiedustelu on tärkeä osa hyökkäystä, jotta aika ei lopu kesken ja löytää oikeat keinot ajoissa
+- Nmap on monipuolisin ja vakain ohjelma porttien skannaukseen
+- ```-Pn``` on tärkeä lippu, koska muuten nmap saattaa luulla jonkin kohteen olevan pois päältä vaikka se olisikin päällä
+- EyeWitness on hyvä työkalu jos täytyy käydä läpi useita nettisivuja
+- 
 
+## Lyon 2009: Nmap Network Scanning: Chapter 1. Getting Started with Nmap Suoraan hevosen suusta
+https://nmap.org/book/nmap-overview-and-demos.html
+- Turvallisuuteen liittyy kompromissi käytettävyyden suhteen
+- Nmapin tulosteesta harjaantunut asiantuntija erottaa onko kohde hyvin suojautunut.
 
 ## Nmap reference guide
 https://nmap.org/book/man.html
