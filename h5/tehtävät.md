@@ -1,5 +1,13 @@
 # X Lue ja tiivistä valitsemasi Bellingcatin OSINT-opas
+https://www.bellingcat.com/resources/how-tos/2018/07/09/digitally-verify-middle-east-conflicts/
+- Tunnistaminen koostuu monesta vihjeestä, jotka saattavat olla ristiriidassa
+- Maastopuvun kuviointi on yksi iso vihje
+- Käytetyt hihamerkit ovat kanssa hyvä huomioida
+- Kuvassa näkyvät aseet saattavat myös kertoa paljon, mutta lähi-idän ollessa kyseessä aseista ei voi vetä varmoja johtopäätöksiä yksinään
 # Y SuomiOsint. Monet OSINT-oppaat keskittyvät isoihin maihin. Kuvaile jokin OSINT-lähde, joka sopii erityisesti Suomeen.
+- Verotiedot verovirastosta
+- finder.fi tietoja yrityksen päättäjistä ja liiketoiminnasta
+- Välillisesti suomeen hitta.se mikäli henkilö asuu ruotsissa tai on asunut
 # A Zap. Asenna OWASP ZAP. Surffaile wepissä ja näytä, että liikenne näkyy proxyssa.
 Kalissa ZAP oli asennettuna valmiiksi joten ei käydä asennusta niin tarkasti läpi, mutta osoitteesta https://www.zaproxy.org/download/ valitsee cross platform packegen niin sen pitäisi toimia mainiosti. ZAP:in ollessa auki oikeasta yläkulmasta kun avaa selaimen saa proxyn näppärästi väliin.  
 ![image](https://user-images.githubusercontent.com/71498717/203804786-b4e7c7ae-7e9d-4d51-9f09-458756ba85b9.png)  
